@@ -1,0 +1,20 @@
+Tesseract Windows Runtime - License Provenance Pending
+
+This project currently redistributes a Windows Tesseract runtime directory
+containing tesseract.exe, traineddata files, Leptonica, ICU, OpenSSL, Cairo,
+Pango, GLib, FreeType, Fontconfig, HarfBuzz, image codecs, compression
+libraries, MinGW runtime libraries, and other DLLs.
+
+The exact binary distribution, package version, download URL, and original
+third-party notice bundle were not preserved in the project. The Tesseract
+engine is licensed under Apache License 2.0, and Leptonica uses a BSD
+2-Clause-style license, but those licenses do not automatically cover every
+bundled DLL.
+
+Before public binary distribution, identify the original Windows package and
+include all LICENSE, COPYING, AUTHORS, README, and third-party notice files
+provided by that package. If provenance cannot be recovered, replace this
+runtime with a traceable distribution that includes its complete notices.
+
+This file documents an unresolved compliance item. It is not a substitute for
+the missing upstream license texts.

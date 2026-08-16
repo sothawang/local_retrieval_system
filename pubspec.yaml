@@ -1,0 +1,120 @@
+name: local_retrieval_system
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  # 1. PDF 解析核心引擎 (基于 PDFium 封装的 Flutter 库，用于本地提取文本和生成元数据)
+  pdfrx: ^2.4.4  # 或者使用 syncfusion_flutter_pdf (完全由 Dart 编写，离线支持极好)
+
+  # 2. DOCX 与 TXT 解析
+  # 由于 Apache Tika 是 Java 程序，架构设计中提到通过本地服务(localhost:9998)或桥接通信。
+  # 在 Dart 端，我们使用 http 库请求本地运行的 Tika Server，或者使用纯 Dart 的 docx 解析库。
+  http: ^1.2.0  # 用于在本地与 Apache Tika 本地服务器通信 (http://localhost:9998)
+  archive: ^4.0.9 # 许多 docx 文件本质是 zip 压缩包，包含 xml，可用于纯 Dart 离线解析方案
+
+  # 3. 图像处理与端侧 OCR (用于 JPG/PNG 格式的印刷文字识别)
+  image: ^4.3.0 # 用于处理、裁剪、获取图片宽高分辨率等元数据
+
+  # 4. 基础工具与异步流
+  path: ^1.9.0
+  ffi: ^2.1.2
+
+  # TFLiteModel
+  tflite_flutter: ^0.12.1
+
+  # Chroma Dart client
+  chromadb: ^1.4.1
+
+  # 跨平台系统原生文件/目录选择器插件，调用操作系统底层原生文件选择对话框
+  file_picker: ^11.0.3
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  mocktail: ^1.0.4
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+
+    # 模型资源位置
+    - assets/bert_model/
+    - assets/mobileclip_model/
+    # 声明测试专用的资源路径
+    - test/test_resources/
+    # 停词表文件
+    - assets/retrieval/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package

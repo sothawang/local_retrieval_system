@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+    <parsers>
+        <parser class="org.apache.tika.parser.DefaultParser">
+            <parser-exclude
+                class="org.apache.tika.parser.ocr.TesseractOCRParser"/>
+        </parser>
+
+        <parser class="org.apache.tika.parser.ocr.TesseractOCRParser">
+            <params>
+                <param name="language" type="string">eng</param>
+                <param name="pageSegMode" type="string">3</param>
+                <param name="skipOcr" type="bool">false</param>
+                <param name="timeoutSeconds" type="int">120</param>
+            </params>
+        </parser>
+    </parsers>
+</properties>
